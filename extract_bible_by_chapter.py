@@ -31,15 +31,12 @@ for book_title in books:
             verse = re.sub(r'\s([?.,;!"](?:\s|$))', r'\1', verse)
             verses.append(verse)
 
-        fulltexts.append(verses)
-
         with open(f"by_chapter/{file_title}/Chapter_{chap_index:02d}.md", "w") as file:
-            for chapter in fulltexts:
-                file.write(f"# Chapter {chap_index}\n\n")
-                verse_index = 1
-                for verse in chapter:
-                    file.write(f"{verse_index}. {verse}\n")
-                    verse_index += 1
-                file.write("\n")
+            file.write(f"# Chapter {chap_index}\n\n")
+            verse_index = 1
+            for verse in verses:
+                file.write(f"{verse_index}. {verse}\n")
+                verse_index += 1
+            file.write("\n")
         chap_index += 1
     book_index += 1
